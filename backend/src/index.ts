@@ -1,7 +1,18 @@
 import express, { Request, Response } from 'express';
 import { createPool } from 'mysql2/promise';
+import cors from 'cors';
+
 
 const app = express();
+
+
+
+app.use(cors({ origin:'*'}));
+
+
+app.use(express.json())
+
+
 
 // Create a connection pool
 const pool = createPool({
