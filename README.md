@@ -1,5 +1,5 @@
 # RUN THE PROJECT
 
 ``̀`
-docker-compose
+docker-compose --build
 ``̀`
