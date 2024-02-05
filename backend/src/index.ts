@@ -1,16 +1,10 @@
 import express, { Request, Response } from 'express';
-import mysql from 'mysql';
-import { Pool } from 'mysql';
-
-// If you're using environment variables, ensure they're loaded
-// For example, using dotenv package (you might need to install it using npm or yarn)
-// import dotenv from 'dotenv';
-// dotenv.config();
+import { createPool } from 'mysql2/promise';
 
 const app = express();
 
-// Improved type annotation for the connection using Pool type from mysql
-const connection: Pool = mysql.createPool({
+// Create a connection pool
+const pool = createPool({
     connectionLimit: 10,
     host: process.env.MYSQL_HOST || 'localhost',
     user: process.env.MYSQL_USER || 'root',
@@ -18,20 +12,36 @@ const connection: Pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE || 'test',
 });
 
-app.get("/", (req: Request, res: Response) => {
-    connection.query("SELECT * FROM Student", (err, rows) => {
-        if (err) {
-            res.json({
-                success: false,
-                error: err,
-            });
-        } else {
-            res.json({
-                success: true,
-                rows,
-            });
-        }
-    });
+// Function to get students using async/await
+async function getStudents() {
+    const [rows] = await pool.query('SELECT * FROM Student');
+    return rows;
+}
+
+async function getUsers() {
+    const [rows] = await pool.query('SELECT * FROM `User`');
+    return rows;
+}
+
+// Route to fetch all students
+app.get("/", async (req: Request, res: Response) => {
+    try {
+        const rows = await getStudents();
+        res.json({ success: true, data: rows });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+});
+
+app.get("/user", async (req: Request, res: Response) => {
+    try {
+        const users = await getUsers();
+        res.json({success: true, data: users});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({success: false, message: 'Internal server error'});
+    }
 });
 
 app.listen(5000, () => console.log("Listening on port 5000 !!!"));
