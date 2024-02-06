@@ -8,10 +8,10 @@ Content-Type: application/json
 
 {
   "data":{
-    "name": "toto",
-    "firstName": "titou",
-    "nickName": "ElSuperKillianDu38",
-    "mail": "monmailtest@test.com",
+    "name": "prout",
+    "firstName": "poupou",
+    "nickName": "aaarita",
+    "mail": "ouaisouais@test.com",
     "isManager": 0
   }
 }
