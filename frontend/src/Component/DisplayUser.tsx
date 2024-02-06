@@ -10,9 +10,8 @@ const Users = () =>{
                 return res.json();
             })
             .then((data)=>{
-                console.log(data.rows);
                 setUsers(data);
-                setToto(data.rows[0].user_firstName)
+                setToto(data.data[0].user_firstName)
             })
             .catch(error => {
             console.error("failed to fetch users", error)

@@ -1,1 +1,17 @@
-GET http://localhost:5000/
+GET http://localhost:5000/user
+
+###
+
+POST http://localhost:5000/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "data":{
+    "name": "toto",
+    "firstName": "titou",
+    "nickName": "ElSuperKillianDu38",
+    "mail": "monmailtest@test.com",
+    "isManager": 0
+  }
+}

@@ -8,7 +8,7 @@ INSERT INTO Student (student_name, student_age) VALUES
 ('Shubham verma', 21),
 ('Utkarsh verma', 23);
 
-CREATE TABLE User (
+CREATE TABLE myUser (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(60),
     user_firstName VARCHAR(60),
@@ -17,7 +17,7 @@ CREATE TABLE User (
     user_isManager TINYINT
 );
 
-INSERT INTO User (user_name, user_firstName, user_nickName, user_mail, user_isManager) VALUES
+INSERT INTO myUser (user_name, user_firstName, user_nickName, user_mail, user_isManager) VALUES
 ('Toto', 'Morico', 'leKingDu69', 'toto@mail.com', 1),
 ('Bill', 'Gates', 'tmtcHight', 'ouaismaisbon@mail.com', 0);
 
