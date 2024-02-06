@@ -1,31 +1,44 @@
 import {useState, useEffect } from "react";
+interface User {
+    user_id: number;
+    user_name: string;
+    user_firstName: string;
+    user_nickName: string;
+    user_mail: string;
+    user_isManager: number;
+}
 
 const Users = () =>{
 
-    const [users, setUsers ] = useState([])
-    const [toto, setToto] = useState()
+    const [users, setUsers ] = useState<User[]>([])
+
     useEffect(()=>{
         fetch('http://localhost:5000/user')
             .then((res)=>{
                 return res.json();
             })
             .then((data)=>{
-                setUsers(data);
-                setToto(data.data[0].user_firstName)
+                console.log(data)
+                setUsers(data.data);
             })
             .catch(error => {
             console.error("failed to fetch users", error)
         })
     },[])
 
+    const showData =() =>{
+        console.log(users)
+    }
+
+
     return(
         <div>
-            <div>
-                {toto}
-            </div>
-            <div>
-                <p>toto</p>
-            </div>
+            <button onClick={showData}>show data</button>
+            <ul>
+                {users.map((user) => (
+                    <li key={user.user_id}>{user.user_nickName}</li>
+                ))}
+            </ul>
         </div>
     )
 }
