@@ -40,6 +40,11 @@ const [ mail, setMail] = useState('');
 
 
     return(
+        <div style={{
+            display:"flex",
+            flexDirection:"column"
+        }}>
+            <h1>CREATE USER</h1>
         <form onSubmit={handleForm}>
             <label htmlFor='name'>Nom</label>
             <input name='name' type="text" onChange={(e) => setName(e.target.value)}></input>
@@ -55,6 +60,7 @@ const [ mail, setMail] = useState('');
 
             <button type="submit"></button>
         </form>
+        </div>
     )
 }
 

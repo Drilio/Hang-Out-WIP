@@ -39,12 +39,17 @@ async function getStudents() {
 }
 
 async function getUsers() {
+    try{
     const [rows] = await pool.query('SELECT * FROM `myUser`');
     return rows;
+    }catch(error){
+        console.log('getUsers error', error);
+    }
 }
 
 async function createUsers(data: UserData){
     console.log('createUser', data);
+    console.log('data.name', data.name);
     try{
         const [user] = await pool.execute(
             'INSERT INTO myUser (user_name, user_firstName, user_nickName, user_mail, user_isManager) VALUES (?, ?, ?, ?, ?)',
