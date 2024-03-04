@@ -28,6 +28,7 @@ const Users = () =>{
 
     const showData =() =>{
         console.log(users)
+        console.log('toto')
     }
 
 
