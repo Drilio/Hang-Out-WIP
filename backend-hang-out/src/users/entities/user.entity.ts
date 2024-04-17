@@ -6,6 +6,7 @@ export class User {
     id!:number;
 
     @Index({unique:true})
+    @Column()
     mail:string;
 
     @Column({length:100})
@@ -17,6 +18,6 @@ export class User {
     @Column()
     password: string;
 
-    @Column({default:Date.now()})
+    @Column({default: () => 'CURRENT_TIMESTAMP'})
     createdAt: Date;
 }
