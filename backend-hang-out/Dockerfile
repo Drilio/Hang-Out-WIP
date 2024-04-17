@@ -12,11 +12,14 @@ COPY . .
 # Build the application if necessary
 RUN npm run build
 
+# Change ownership (if necessary) and adjust permissions
+RUN chown -R node:node /app && chmod -R 755 /app
+
 # Use non-root user
 USER node
 
 # Expose the application port
-EXPOSE 5000
+EXPOSE 3000
 
 # Command to run the application
 CMD ["npm", "start"]
